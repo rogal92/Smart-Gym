@@ -1,12 +1,9 @@
 package com.example.smartgym.dao;
 
-import com.example.smartgym.dao.Equipment;
-import com.example.smartgym.dao.GymCoach;
-import com.example.smartgym.dao.GymUser;
-
 import java.util.List;
 
 public class Gym {
+    private long id;
     private String name;
     private List<GymCoach> coaches;
     private List<GymUser> users;
