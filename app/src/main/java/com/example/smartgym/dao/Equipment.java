@@ -1,4 +1,4 @@
-package com.example.smartgym.gym;
+package com.example.smartgym.dao;
 
 public class Equipment {
     private long id;

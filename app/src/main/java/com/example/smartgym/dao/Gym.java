@@ -1,5 +1,6 @@
-package com.example.smartgym.gym;
+package com.example.smartgym.dao;
 
+import com.example.smartgym.dao.Equipment;
 import com.example.smartgym.dao.GymCoach;
 import com.example.smartgym.dao.GymUser;
 
