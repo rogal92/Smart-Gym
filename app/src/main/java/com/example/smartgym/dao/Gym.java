@@ -6,6 +6,5 @@ public class Gym {
     private long id;
     private String name;
     private List<GymCoach> coaches;
-    private List<GymUser> users;
     private List<Equipment> gymEquipment;
 }
