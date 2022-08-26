@@ -2,14 +2,14 @@ package com.example.smartgym.dao;
 
 import com.example.smartgym.constants.Goal;
 
-public class GymUser {
+public class User {
     private long id;
     private String name;
     private String gender;
     private int age;
     private Goal goal;
 
-    public GymUser(long id, String name, String gender, int age, Goal goal) {
+    public User(long id, String name, String gender, int age, Goal goal) {
         this.id = id;
         this.name = name;
         this.gender = gender;

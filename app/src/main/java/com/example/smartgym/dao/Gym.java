@@ -5,22 +5,15 @@ import java.util.Set;
 public class Gym {
     private long id;
     private String name;
-    private Set<GymCoach> coaches;
-    private Set<Equipment> gymEquipment;
+    private String location;
 
-    public Gym(long id, String name, Set<GymCoach> coaches, Set<Equipment> gymEquipment) {
-        this.id = id;
+    public Gym(String name, String location) {
         this.name = name;
-        this.coaches = coaches;
-        this.gymEquipment = gymEquipment;
+        this.location = location;
     }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -31,19 +24,11 @@ public class Gym {
         this.name = name;
     }
 
-    public Set<GymCoach> getCoaches() {
-        return coaches;
+    public String getLocation() {
+        return location;
     }
 
-    public void setCoaches(Set<GymCoach> coaches) {
-        this.coaches = coaches;
-    }
-
-    public Set<Equipment> getGymEquipment() {
-        return gymEquipment;
-    }
-
-    public void setGymEquipment(Set<Equipment> gymEquipment) {
-        this.gymEquipment = gymEquipment;
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

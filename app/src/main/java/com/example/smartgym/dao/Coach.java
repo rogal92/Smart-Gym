@@ -1,12 +1,14 @@
 package com.example.smartgym.dao;
 
-public class GymCoach {
+public class Coach {
     private long id;
     private String name;
+    private long gymId;
 
-    public GymCoach(long id, String name) {
+    public Coach(long id, String name, long gymId) {
         this.id = id;
         this.name = name;
+        this.gymId = gymId;
     }
 
     public long getId() {
@@ -23,5 +25,13 @@ public class GymCoach {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getGymId() {
+        return gymId;
+    }
+
+    public void setGymId(Long gymId) {
+        this.gymId = gymId;
     }
 }
