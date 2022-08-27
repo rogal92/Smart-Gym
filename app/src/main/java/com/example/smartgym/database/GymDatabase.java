@@ -16,21 +16,10 @@ import com.example.smartgym.dao.Gym;
 
 import java.util.List;
 
-//PROTOTYPE
 //TODO CHANGE TO ENUMS
 public class GymDatabase {
-    public static final String KEY_ID = "ID";
     public static final String KEY_NAME = "NAME";
     public static final String KEY_DESCRIPTION = "DESCRIPTION";
-    public static final String KEY_COACHES = "COACHES";
-    public static final String KEY_EQUIPMENT = "EQUIPMENT";
-    public static final String KEY_LOCATION = "LOCATION";
-    public static final String ID_OPTIONS = "INTEGER PRIMARY KEY AUTOINCREMENT";
-    public static final String NAME_OPTIONS = "TEXT NOT NULL";
-    public static final String DESCRIPTION_OPTIONS = "TEXT NOT NULL";
-    public static final String COACHES_OPTIONS = "INTEGER FOREIGN KEY";
-    public static final String EQUIPMENT_OPTIONS = "INTEGER FOREIGN KEY";
-    public static final String LOCATION_OPTIONS = "TEXT NOT NULL";
     public static final int ID_COLUMN = 0;
     public static final int NAME_COLUMN = 1;
     public static final int COACHES_COLUMN = 2;
@@ -41,25 +30,23 @@ public class GymDatabase {
     private static final String GYM_TABLE = "GYM";
     private static final String COACH_TABLE = "COACH";
     private static final String EQUIPMENT_TABLE = "EQUIPMENT";
-    private static final String DB_CREATE_COACH_TABLE =
-            "CREATE TABLE " + COACH_TABLE + "( " +
-                    KEY_ID + " " + ID_OPTIONS + ", " +
-                    KEY_NAME + " " + NAME_OPTIONS +
-                    ");";
-    private static final String DB_CREATE_EQUIPMENT_TABLE =
-            "CREATE TABLE " + EQUIPMENT_TABLE + "( " +
-                    KEY_ID + " " + ID_OPTIONS + ", " +
-                    KEY_NAME + " " + NAME_OPTIONS +
-                    KEY_DESCRIPTION + " " + DESCRIPTION_OPTIONS +
-                    ");";
-    private static final String DB_CREATE_GYM_TABLE =
-            "CREATE TABLE " + GYM_TABLE + "( " +
-                    KEY_ID + " " + ID_OPTIONS + ", " +
-                    KEY_NAME + " " + NAME_OPTIONS + ", " +
-                    KEY_LOCATION + " " + LOCATION_OPTIONS +
-                    ");";
-    private static final String DROP_TODO_TABLE =
-            "DROP TABLE IF EXISTS " + GYM_TABLE;
+    private static final String DB_CREATE_COACH_TABLE = """
+            CREATE TABLE COACH (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            NAME TEXT NOT NULL);
+            """;
+    private static final String DB_CREATE_EQUIPMENT_TABLE = """
+            CREATE TABLE EQUIPMENT (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            NAME TEXT NOT NULL,
+            DESCRIPTION TEST NOT NULL);
+            """;
+    private static final String DB_CREATE_GYM_TABLE = """
+            CREATE TABLE GYM (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            NAME TEXT NOT NULL,
+            LOCATION TEXT NOT NULL);
+            """;
     private SQLiteDatabase db;
     private Context context;
     private DatabaseService dbService;
@@ -112,41 +99,43 @@ public class GymDatabase {
         This will be saved to smartphone memory and should be done only once.
         This will be hardcoded for now.
      */
-
-    public long insertAllGymData() {
-        return 0;
+    public void insertAllGymData() {
+        insertGym();
+        insertCoaches("Atlantic", "ul. Pakerska 69, Kraków");
+        insertEquipment();
     }
 
-    public long insertGym() {
+    private long insertGym() {
+        Log.d(DEBUG_TAG, "Saving Gym to database..");
         ContentValues gymValues = new ContentValues();
         Gym atlantic = new Gym("Atlantic", "ul. Pakerska 69, Kraków");
-        gymValues.put(KEY_NAME, atlantic.getName());
-        gymValues.put(KEY_LOCATION, atlantic.getLocation());
+        gymValues.put("NAME", atlantic.getName());
+        gymValues.put("LOCATION", atlantic.getLocation());
 
         return db.insert(GYM_TABLE, null, gymValues);
     }
 
-
-    public long insertCoaches(String gymName, String gymLocation) {
+    private long insertCoaches(String gymName, String gymLocation) {
+        Log.d(DEBUG_TAG, "Saving Coaches to device database...");
         ContentValues coachValues = new ContentValues();
-        Cursor currentGym = db.rawQuery("SELECT ID " +
-                        "FROM GYM " +
-                        "WHERE NAME = ?" +
-                        "AND LOCATION = ?",
+        Cursor currentGym = db.rawQuery("""
+                SELECT ID 
+                FROM GYM
+                WHERE NAME = ?
+                AND LOCATION = ?""",
                 new String[]{gymName, gymLocation});
-
-
         Coach fiedorBodyBuilder = new Coach(1, "Michael Fiedor", currentGym.getLong(1));
         List<Coach> coachList = List.of(fiedorBodyBuilder);
         coachList.forEach(coach -> coachValues.put(KEY_NAME, coach.getName()));
         return db.insert(COACH_TABLE, null, coachValues);
     }
 
-    public long insertEquipment() {
+    private long insertEquipment() {
+        Log.d(DEBUG_TAG, "Saving Equipment to device database...");
         ContentValues equipmentValues = new ContentValues();
-        List<Equipment> equipmentList = List.of(barbell);
-        Equipment barbell = new Equipment(1, "Barbell", "Do workout dont be a pussy",
+        Equipment barbell = new Equipment(1, "Barbell", "Do workout, don't be a pussy",
                 "location to video or photo?");
+        List<Equipment> equipmentList = List.of(barbell);
         equipmentList.forEach(equipment -> {
             equipmentValues.put(KEY_NAME, equipment.getName());
             equipmentValues.put(KEY_DESCRIPTION, equipment.getDescription());
