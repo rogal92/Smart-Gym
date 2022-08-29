@@ -4,16 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/backgroundtemp">
+    android:background="@drawable/atlantic">
 
     <Button
-        android:id="@+id/findGymButton"
+        android:id="@+id/main_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:onClick="enterGym"
+        android:onClick="startJourney"
         android:shadowColor="@color/black"
-        android:text="Wejdź do pakerni" />
+        android:text="Zacznij Trening" />
 
     <TextView
         android:id="@+id/message"

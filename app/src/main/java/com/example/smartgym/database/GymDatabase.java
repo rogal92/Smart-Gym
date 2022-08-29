@@ -1,6 +1,11 @@
 package com.example.smartgym.database;
 
-import static com.example.smartgym.database.GymDatabaseProvider.*;
+import static com.example.smartgym.database.GymDatabaseProvider.COACH_TABLE;
+import static com.example.smartgym.database.GymDatabaseProvider.DB_NAME;
+import static com.example.smartgym.database.GymDatabaseProvider.DB_VERSION;
+import static com.example.smartgym.database.GymDatabaseProvider.DEBUG_TAG;
+import static com.example.smartgym.database.GymDatabaseProvider.EQUIPMENT_TABLE;
+import static com.example.smartgym.database.GymDatabaseProvider.GYM_TABLE;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -35,6 +40,7 @@ public class GymDatabase {
         dbCreator = new GymDatabaseProvider(context, DB_NAME, null, DB_VERSION);
         try {
             db = dbCreator.getWritableDatabase();
+            insertAllGymData();
         } catch (SQLException e) {
             db = dbCreator.getReadableDatabase();
         }
@@ -58,6 +64,20 @@ public class GymDatabase {
         insertEquipment();
     }
 
+    public Equipment getEquipment() {
+        Log.d(DEBUG_TAG, "Getting desired equipment");
+        Cursor fetchedEquipment = db.rawQuery("""
+                SELECT * 
+                FROM EQUIPMENT 
+                WHERE ID = 1;
+                """, new String[]{});
+        return new Equipment(
+                fetchedEquipment.getLong(1),
+                fetchedEquipment.getString(2),
+                fetchedEquipment.getString(3),
+                fetchedEquipment.getString(4));
+    }
+
     private long insertGym() {
         Log.d(DEBUG_TAG, "Saving Gym to database..");
         ContentValues gymValues = new ContentValues();
@@ -72,12 +92,14 @@ public class GymDatabase {
         Log.d(DEBUG_TAG, "Saving Coaches to device database...");
         ContentValues coachValues = new ContentValues();
         Cursor currentGym = db.rawQuery("""
-                SELECT ID 
-                FROM GYM
-                WHERE NAME = ?
-                AND LOCATION = ?""",
+                        SELECT ID 
+                        FROM GYM
+                        WHERE NAME = ?
+                        AND LOCATION = ?""",
                 new String[]{gymName, gymLocation});
-        Coach fiedorBodyBuilder = new Coach(1, "Michael Fiedor", currentGym.getLong(1));
+        boolean isCursorOnGymRow = currentGym.getCount() == 1 && currentGym.moveToFirst();
+        Coach fiedorBodyBuilder = new Coach(1, "Michael Fiedor",
+                isCursorOnGymRow ? currentGym.getLong(1) : null); //TODO check the result of this and handle situation when gym is is not found
         List<Coach> coachList = List.of(fiedorBodyBuilder);
         coachList.forEach(coach -> coachValues.put(KEY_NAME, coach.getName()));
         return db.insert(COACH_TABLE, null, coachValues);
