@@ -12,14 +12,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.smartgym.database.GymDatabase;
 import com.example.smartgym.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-    private Button findGymButton;
+    private Button findGymButton, downloadGymButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         findGymButton = findViewById(R.id.findGymButton);
+        downloadGymButton = findViewById(R.id.downloadGymButton);
         findGymButton.setOnClickListener(
                 view -> startActivity(new Intent(this, HelloGymActivity.class)));
+        downloadGymButton.setOnClickListener(
+                view -> startActivity(new Intent(this, DownloadGymActivity.class)));
     }
 
     @Override

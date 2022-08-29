@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/backgroundtemp">
+    android:background="@drawable/backgroundtemp"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/findGymButton"
@@ -15,10 +15,13 @@
         android:shadowColor="@color/black"
         android:text="Wejdź do pakerni" />
 
-    <TextView
-        android:id="@+id/message"
+    <Button
+        android:id="@+id/downloadGymButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp" />
+        android:layout_margin="20dp"
+        android:onClick="enterGym"
+        android:shadowColor="@color/black"
+        android:text="Pobierz dane swojej ulubionej pakerni" />
 
 </LinearLayout>

@@ -1,19 +1,22 @@
 package com.example.smartgym.dao;
 
-import java.util.Set;
-
 public class Gym {
     private long id;
     private String name;
-    private String location;
+    private GymLocation gymLocation;
 
-    public Gym(String name, String location) {
+    public Gym(long id, String name, GymLocation gymLocation) {
+        this.id = id;
         this.name = name;
-        this.location = location;
+        this.gymLocation = gymLocation;
     }
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -24,11 +27,11 @@ public class Gym {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public GymLocation getGymLocation() {
+        return gymLocation;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setGymLocation(GymLocation gymLocation) {
+        this.gymLocation = gymLocation;
     }
 }

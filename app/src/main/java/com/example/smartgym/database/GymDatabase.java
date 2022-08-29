@@ -17,6 +17,7 @@ import android.util.Log;
 import com.example.smartgym.dao.Coach;
 import com.example.smartgym.dao.Equipment;
 import com.example.smartgym.dao.Gym;
+import com.example.smartgym.dao.GymLocation;
 
 import java.util.List;
 
@@ -78,12 +79,27 @@ public class GymDatabase {
                 fetchedEquipment.getString(4));
     }
 
+    public List<Gym> getAvailableGyms() {
+        return List.of(new Gym(1,"Atlantic", new GymLocation(
+                "Małopolska",
+                "Kraków",
+                "34-500",
+                "Pakerska",
+                69)));
+    }
+
+
     private long insertGym() {
         Log.d(DEBUG_TAG, "Saving Gym to database..");
         ContentValues gymValues = new ContentValues();
-        Gym atlantic = new Gym("Atlantic", "ul. Pakerska 69, Kraków");
+        Gym atlantic = new Gym(1,"Atlantic", new GymLocation(
+                "Małopolska",
+                "Kraków",
+                "34-500",
+                "Pakerska",
+                69));
         gymValues.put("NAME", atlantic.getName());
-        gymValues.put("LOCATION", atlantic.getLocation());
+        gymValues.put("LOCATION", atlantic.getGymLocation().toString());
 
         return db.insert(GYM_TABLE, null, gymValues);
     }
