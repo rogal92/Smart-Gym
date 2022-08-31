@@ -1,4 +1,4 @@
-package com.example.smartgym;
+package com.example.smartgym.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.smartgym.R;
 import com.example.smartgym.database.GymDatabase;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
 

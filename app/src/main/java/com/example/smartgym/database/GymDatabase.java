@@ -14,6 +14,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.smartgym.R;
 import com.example.smartgym.dao.Coach;
 import com.example.smartgym.dao.Equipment;
 import com.example.smartgym.dao.Gym;
@@ -79,13 +80,27 @@ public class GymDatabase {
                 fetchedEquipment.getString(4));
     }
 
+    public int[] getGymLogos() {
+        return new int[]{R.drawable.atlantic, R.drawable.gym};
+
+    }
+
     public List<Gym> getAvailableGyms() {
-        return List.of(new Gym(1,"Atlantic", new GymLocation(
+        //temporary hardcoded, will be fetched from external db
+        return List.of(
+                new Gym(1,"Atlantic", new GymLocation(
                 "Małopolska",
                 "Kraków",
                 "34-500",
                 "Pakerska",
-                69)));
+                69)),
+                new Gym(2, "Calypso", new GymLocation(
+                        "Małopolska",
+                        "Kraków",
+                        "34-500",
+                        "Tam Koło Galerii",
+                        69)
+                ));
     }
 
 

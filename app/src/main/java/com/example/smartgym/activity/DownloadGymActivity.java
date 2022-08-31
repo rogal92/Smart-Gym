@@ -1,9 +1,10 @@
-package com.example.smartgym;
+package com.example.smartgym.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.smartgym.R;
 import com.example.smartgym.database.GymDatabase;
 
 import java.sql.DatabaseMetaData;
@@ -22,5 +23,6 @@ public class DownloadGymActivity extends AppCompatActivity {
         setContentView(R.layout.activity_download_gym);
         //TODO finish him
         gymDatabase.getAvailableGyms();
+        gymDatabase.getGymLogos();
     }
 }

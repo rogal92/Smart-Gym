@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DownloadGymActivity">
+    tools:context=".activity.DownloadGymActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/downloadGymRecyclerView"
         android:layout_width="409dp"
         android:layout_height="601dp"
         android:layout_marginStart="8dp"

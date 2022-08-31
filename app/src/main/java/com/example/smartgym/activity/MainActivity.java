@@ -1,4 +1,4 @@
-package com.example.smartgym;
+package com.example.smartgym.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.smartgym.R;
 import com.example.smartgym.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

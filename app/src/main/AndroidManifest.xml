@@ -24,16 +24,16 @@
     android:theme="@style/Theme.SmartGym"
     tools:targetApi="31">
         <activity
-        android:name=".DownloadGymActivity"
+        android:name=".activity.DownloadGymActivity"
         android:exported="false" />
         <activity
-        android:name=".EquipmentFinderActivity"
+        android:name=".activity.EquipmentFinderActivity"
         android:exported="false" />
         <activity
-        android:name=".HelloGymActivity"
+        android:name=".activity.HelloGymActivity"
         android:exported="false" />
         <activity
-        android:name=".MainActivity"
+        android:name=".activity.MainActivity"
         android:exported="true"
             android:theme="@style/Theme.SmartGym.NoActionBar">
             <intent-filter>
