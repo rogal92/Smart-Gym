@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.smartgym.database.GymDatabase;
+import com.kontakt.sdk.android.ble.manager.ProximityManager;
 
 public class HelloGymActivity extends AppCompatActivity {
     private GymDatabase gymDatabase;
     private Button startTtainingButton;
+    private ProximityManager proximityManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
