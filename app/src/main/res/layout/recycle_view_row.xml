@@ -22,35 +22,20 @@
                 android:layout_width="97dp"
                 android:layout_height="78dp"
                 android:layout_marginTop="1dp"
-                android:layout_marginEnd="11dp"
                 android:layout_marginBottom="1dp"
                 android:contentDescription="atlantic_logo"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/gymStreet"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/atlantic" />
 
             <TextView
-                android:id="@+id/gymStreet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="243dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/gymLocalization" />
-
-            <TextView
                 android:id="@+id/gymLocalization"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="11dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="11dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
                 android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/gymStreet"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/gymName" />
 
@@ -58,13 +43,16 @@
                 android:id="@+id/gymName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="11dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="243dp"
                 android:layout_marginBottom="10dp"
+                android:capitalize="words"
                 android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintBottom_toTopOf="@+id/gymLocalization"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />
 

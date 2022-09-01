@@ -39,11 +39,11 @@ public class GymRecycleViewAdapter extends RecyclerView.Adapter<GymRecycleViewAd
         GymLocation gymLocation = currentGym.getGymLocation();
 
         holder.gymName.setText(currentGym.getName());
-        holder.localization.setText(String.format("%s, %s %s",
-                gymLocation.getProvince(),
+        holder.localization.setText(String.format("%s, %s%n%s %d",
                 gymLocation.getCity(),
-                gymLocation.getPostCode()));
-        holder.street.setText(gymLocation.getStreet());
+                gymLocation.getPostCode(),
+                gymLocation.getStreet(),
+                gymLocation.getStreetNumber()));
         holder.gymLogo.setImageResource(currentGym.getLogoId());
     }
 
@@ -54,14 +54,13 @@ public class GymRecycleViewAdapter extends RecyclerView.Adapter<GymRecycleViewAd
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView gymLogo;
-        TextView gymName, localization, street;
+        TextView gymName, localization;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             gymLogo = itemView.findViewById(R.id.imageView);
             gymName = itemView.findViewById(R.id.gymName);
             localization = itemView.findViewById(R.id.gymLocalization);
-            street = itemView.findViewById(R.id.gymStreet);
         }
     }
 }
