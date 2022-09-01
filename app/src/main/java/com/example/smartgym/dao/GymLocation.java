@@ -1,11 +1,11 @@
 package com.example.smartgym.dao;
 
 public class GymLocation {
-    private String province;
-    private String city;
-    private String postCode;
-    private String street;
-    private int streetNumber;
+    private final String province;
+    private final String city;
+    private final String postCode;
+    private final String street;
+    private final int streetNumber;
 
     public GymLocation(String province, String city, String postCode, String street,
                        int streetNumber) {
@@ -20,40 +20,20 @@ public class GymLocation {
         return province;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getPostCode() {
         return postCode;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
-    }
-
     public String getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
     public int getStreetNumber() {
         return streetNumber;
-    }
-
-    public void setStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
     }
 
     @Override

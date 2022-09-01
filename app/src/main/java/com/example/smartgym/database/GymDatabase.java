@@ -7,6 +7,7 @@ import static com.example.smartgym.database.GymDatabaseProvider.DEBUG_TAG;
 import static com.example.smartgym.database.GymDatabaseProvider.EQUIPMENT_TABLE;
 import static com.example.smartgym.database.GymDatabaseProvider.GYM_TABLE;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -87,20 +88,21 @@ public class GymDatabase {
 
     public List<Gym> getAvailableGyms() {
         //temporary hardcoded, will be fetched from external db
-        return List.of(
-                new Gym(1,"Atlantic", new GymLocation(
+        Gym atlantic = new Gym(1, "Atlantic", new GymLocation(
                 "Małopolska",
                 "Kraków",
                 "34-500",
                 "Pakerska",
-                69)),
-                new Gym(2, "Calypso", new GymLocation(
-                        "Małopolska",
-                        "Kraków",
-                        "34-500",
-                        "Tam Koło Galerii",
-                        69)
-                ));
+                69),
+                R.drawable.atlantic);
+        Gym calypso = new Gym(2, "Calypso", new GymLocation(
+                "Małopolska",
+                "Kraków",
+                "34-500",
+                "Tam Koło Galerii",
+                69),
+                R.drawable.gym);
+        return List.of(atlantic, calypso, atlantic, calypso, atlantic, calypso, atlantic, calypso);
     }
 
 
@@ -112,7 +114,8 @@ public class GymDatabase {
                 "Kraków",
                 "34-500",
                 "Pakerska",
-                69));
+                69),
+                R.drawable.atlantic);
         gymValues.put("NAME", atlantic.getName());
         gymValues.put("LOCATION", atlantic.getGymLocation().toString());
 
@@ -136,6 +139,7 @@ public class GymDatabase {
         return db.insert(COACH_TABLE, null, coachValues);
     }
 
+    @SuppressLint("NewApi")
     private long insertEquipment() {
         Log.d(DEBUG_TAG, "Saving Equipment to device database...");
         ContentValues equipmentValues = new ContentValues();
