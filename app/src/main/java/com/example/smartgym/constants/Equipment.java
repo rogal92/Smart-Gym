@@ -84,7 +84,7 @@ public class Equipment {
             contentMap.put(FOR_WHO, equipmentMap.toString());
             equipmentMap.setLength(0);
             ++index;
-            resultList.add(new Equipmentt(contentMap));
+            resultList.add(new Equipmentt(new HashMap<>(contentMap)));
             contentMap.clear();
         }
         return resultList;
