@@ -38,41 +38,55 @@ public class Equipment {
         Map<String, String> contentMap = new HashMap<>();
         List<String> lines = br.lines().collect(Collectors.toList());
         StringBuilder contentValue = new StringBuilder();
-        for (int i = 0; i < lines.size(); i++) {
-            if (lines.get(i).startsWith("1")) continue;
-            while (!lines.get(i).startsWith("1.END")) contentValue.append(lines.get(i));
-            if (lines.get(i).startsWith("2")) {
-                updateMap(contentMap, NAME, contentValue);
-                continue;
-            }
-            while (!lines.get(i).startsWith("2.END")) contentValue.append(lines.get(i));
-            if (lines.get(i).startsWith("3")) {
-                updateMap(contentMap, DESCRIPTION, contentValue);
-                continue;
-            }
-            while (!lines.get(i).startsWith("3.END")) contentValue.append(lines.get(i));
-            if (lines.get(i).startsWith("4")) {
-                updateMap(contentMap, MUSCLE_USED, contentValue);
-                continue;
-            }
-            while (!lines.get(i).startsWith("4.END")) contentValue.append(lines.get(i));
-            if (lines.get(i).startsWith("5")) {
-                updateMap(contentMap, USAGE_TIPS, contentValue);
-                continue;
-            }
-            while (!lines.get(i).startsWith("5.END")) contentValue.append(lines.get(i));
-            if (lines.get(i).startsWith("---")) {
-                updateMap(contentMap, FOR_WHO, contentValue);
-                resultList.add(new Equipmentt(contentMap));
-                contentMap.clear();
-            }
+        int i = 0;
+        if (lines.get(i).startsWith("1"))
+            contentValue.append(lines.get(++i));
+
+        while (!lines.get(i).startsWith("2"))
+            contentValue.append(lines.get(++i));
+
+        if (lines.get(i).startsWith("2")) {
+            contentMap.put(NAME, contentValue.toString());
+            contentValue.setLength(0);
+            contentValue.append(lines.get(++i));
+        }
+
+        while (!lines.get(i).startsWith("3"))
+            contentValue.append(lines.get(i));
+
+        if (lines.get(i).startsWith("3")) {
+            contentMap.put(DESCRIPTION, contentValue.toString());
+            contentValue.setLength(0);
+            contentValue.append(lines.get(++i));
+        }
+
+        while (!lines.get(i).startsWith("4"))
+            contentValue.append(lines.get(i));
+
+        if (lines.get(i).startsWith("4")) {
+            contentMap.put(MUSCLE_USED, contentValue.toString());
+            contentValue.setLength(0);
+            contentValue.append(lines.get(++i));
+        }
+
+        while (!lines.get(i).startsWith("5"))
+            contentValue.append(lines.get(i));
+
+        if (lines.get(i).startsWith("5")) {
+            contentMap.put(USAGE_TIPS, contentValue.toString());
+            contentValue.setLength(0);
+            contentValue.append(lines.get(++i));
+        }
+
+        while (!lines.get(i).startsWith("---"))
+            contentValue.append(lines.get(i));
+
+        if (lines.get(i).startsWith("---")) {
+            contentMap.put(FOR_WHO, contentValue.toString());
+            contentValue.setLength(0);
+            contentValue.append(lines.get(++i));
+            contentMap.clear();
         }
         return resultList;
-    }
-
-    private static void updateMap(Map<String, String> contentMap, String key,
-                                  StringBuilder contentValue) {
-        contentMap.put(key, contentValue.toString());
-        contentValue.setLength(0);
     }
 }
