@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.example.smartgym.R;
-import com.example.smartgym.constants.Equipment;
 
 public class EquipmentFinderActivity extends AppCompatActivity {
 

@@ -15,7 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.smartgym.R;
-import com.example.smartgym.constants.Equipment;
+import com.example.smartgym.service.EquipmentReader;
 import com.example.smartgym.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 view -> startActivity(new Intent(this, HelloGymActivity.class)));
         downloadGymButton.setOnClickListener(
                 view -> startActivity(new Intent(this, DownloadGymActivity.class)));
-        Equipment.getAvailableGymEquipment(this);
+        EquipmentReader.getAvailableGymEquipment(this);
     }
 
     @Override
