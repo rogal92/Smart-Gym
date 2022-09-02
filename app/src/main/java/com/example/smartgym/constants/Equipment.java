@@ -37,54 +37,54 @@ public class Equipment {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         Map<String, String> contentMap = new HashMap<>();
         List<String> lines = br.lines().collect(Collectors.toList());
-        StringBuilder contentValue = new StringBuilder();
-        int i = 0;
-        if (lines.get(i).startsWith("1"))
-            contentValue.append(lines.get(++i));
+        StringBuilder equipmentMap = new StringBuilder();
+        int index = 0;
+        if (lines.get(index).startsWith("1")) ++index;
 
-        while (!lines.get(i).startsWith("2"))
-            contentValue.append(lines.get(++i));
+        while (!lines.get(index).startsWith("2"))
+            equipmentMap.append(lines.get(index++));
 
-        if (lines.get(i).startsWith("2")) {
-            contentMap.put(NAME, contentValue.toString());
-            contentValue.setLength(0);
-            contentValue.append(lines.get(++i));
+        if (lines.get(index).startsWith("2")) {
+            contentMap.put(NAME, equipmentMap.toString());
+            equipmentMap.setLength(0);
+            ++index;
         }
 
-        while (!lines.get(i).startsWith("3"))
-            contentValue.append(lines.get(i));
+        while (!lines.get(index).startsWith("3"))
+            equipmentMap.append(lines.get(index++));
 
-        if (lines.get(i).startsWith("3")) {
-            contentMap.put(DESCRIPTION, contentValue.toString());
-            contentValue.setLength(0);
-            contentValue.append(lines.get(++i));
+        if (lines.get(index).startsWith("3")) {
+            contentMap.put(DESCRIPTION, equipmentMap.toString());
+            equipmentMap.setLength(0);
+            ++index;
         }
 
-        while (!lines.get(i).startsWith("4"))
-            contentValue.append(lines.get(i));
+        while (!lines.get(index).startsWith("4"))
+            equipmentMap.append(lines.get(index++));
 
-        if (lines.get(i).startsWith("4")) {
-            contentMap.put(MUSCLE_USED, contentValue.toString());
-            contentValue.setLength(0);
-            contentValue.append(lines.get(++i));
+        if (lines.get(index).startsWith("4")) {
+            contentMap.put(MUSCLE_USED, equipmentMap.toString());
+            equipmentMap.setLength(0);
+            ++index;
         }
 
-        while (!lines.get(i).startsWith("5"))
-            contentValue.append(lines.get(i));
+        while (!lines.get(index).startsWith("5"))
+            equipmentMap.append(lines.get(index++));
 
-        if (lines.get(i).startsWith("5")) {
-            contentMap.put(USAGE_TIPS, contentValue.toString());
-            contentValue.setLength(0);
-            contentValue.append(lines.get(++i));
+        if (lines.get(index).startsWith("5")) {
+            contentMap.put(USAGE_TIPS, equipmentMap.toString());
+            equipmentMap.setLength(0);
+            ++index;
         }
 
-        while (!lines.get(i).startsWith("---"))
-            contentValue.append(lines.get(i));
+        while (!lines.get(index).startsWith("---"))
+            equipmentMap.append(lines.get(index++));
 
-        if (lines.get(i).startsWith("---")) {
-            contentMap.put(FOR_WHO, contentValue.toString());
-            contentValue.setLength(0);
-            contentValue.append(lines.get(++i));
+        if (lines.get(index).startsWith("---")) {
+            contentMap.put(FOR_WHO, equipmentMap.toString());
+            equipmentMap.setLength(0);
+            ++index;
+            resultList.add(new Equipmentt(contentMap));
             contentMap.clear();
         }
         return resultList;
