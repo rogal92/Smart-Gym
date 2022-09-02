@@ -17,11 +17,14 @@ import android.util.Log;
 
 import com.example.smartgym.R;
 import com.example.smartgym.dao.Coach;
-import com.example.smartgym.dao.Equipment;
+import com.example.smartgym.dao.GymEquipment;
 import com.example.smartgym.dao.Gym;
 import com.example.smartgym.dao.GymLocation;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //TODO CHANGE TO ENUMS
 public class GymDatabase {
@@ -57,7 +60,7 @@ public class GymDatabase {
     /*TODO
         This method should receive in argument the whole data about the gym that user is
         currently in. Location info should be provided by beacon and the data should be provided
-        by gym (what equipment do they have and the locations of it from beacons)
+        by gym (what equipment.txt do they have and the locations of it from beacons)
         This will be saved to smartphone memory and should be done only once.
         This will be hardcoded for now.
      */
@@ -67,14 +70,14 @@ public class GymDatabase {
         insertEquipment();
     }
 
-    public Equipment getEquipment() {
-        Log.d(DEBUG_TAG, "Getting desired equipment");
+    public GymEquipment getEquipment() {
+        Log.d(DEBUG_TAG, "Getting desired equipment.txt");
         Cursor fetchedEquipment = db.rawQuery("""
                 SELECT * 
                 FROM EQUIPMENT 
                 WHERE ID = 1;
                 """, new String[]{});
-        return new Equipment(
+        return new GymEquipment(
                 fetchedEquipment.getLong(1),
                 fetchedEquipment.getString(2),
                 fetchedEquipment.getString(3),
@@ -102,14 +105,20 @@ public class GymDatabase {
                 "Tam Koło Galerii",
                 69),
                 R.drawable.gym);
-        return List.of(atlantic, calypso, atlantic, calypso, atlantic, calypso, atlantic, calypso);
+        List<Gym> gymList = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            gymList.add(calypso);
+            gymList.add(atlantic);
+        }
+        gymList = gymList.stream().sorted(Comparator.comparing(Gym::getName)).collect(Collectors.toList());
+        return gymList;
     }
 
 
     private long insertGym() {
         Log.d(DEBUG_TAG, "Saving Gym to database..");
         ContentValues gymValues = new ContentValues();
-        Gym atlantic = new Gym(1,"Atlantic", new GymLocation(
+        Gym atlantic = new Gym(1, "Atlantic", new GymLocation(
                 "Małopolska",
                 "Kraków",
                 "34-500",
@@ -143,9 +152,9 @@ public class GymDatabase {
     private long insertEquipment() {
         Log.d(DEBUG_TAG, "Saving Equipment to device database...");
         ContentValues equipmentValues = new ContentValues();
-        Equipment barbell = new Equipment(1, "Barbell", "Do workout, don't be a pussy",
+        GymEquipment barbell = new GymEquipment(1, "Barbell", "Do workout, don't be a pussy",
                 "location to video or photo?");
-        List<Equipment> equipmentList = List.of(barbell);
+        List<GymEquipment> equipmentList = List.of(barbell);
         equipmentList.forEach(equipment -> {
             equipmentValues.put(KEY_NAME, equipment.getName());
             equipmentValues.put(KEY_DESCRIPTION, equipment.getDescription());

@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import com.example.smartgym.R;
 import com.example.smartgym.adapter.GymRecycleViewAdapter;
-import com.example.smartgym.dao.Gym;
 import com.example.smartgym.database.GymDatabase;
 
 import java.sql.DatabaseMetaData;

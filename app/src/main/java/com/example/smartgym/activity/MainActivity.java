@@ -1,11 +1,13 @@
 package com.example.smartgym.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -13,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.smartgym.R;
+import com.example.smartgym.constants.Equipment;
 import com.example.smartgym.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private Button findGymButton, downloadGymButton;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 view -> startActivity(new Intent(this, HelloGymActivity.class)));
         downloadGymButton.setOnClickListener(
                 view -> startActivity(new Intent(this, DownloadGymActivity.class)));
+        Equipment.getAvailableGymEquipment(this);
     }
 
     @Override
