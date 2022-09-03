@@ -1,9 +1,6 @@
 package com.example.smartgym.service;
 
 import android.content.Context;
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
 
 import com.example.smartgym.dao.GymEquipment;
 
@@ -15,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 
 public class EquipmentReader {
@@ -24,8 +20,15 @@ public class EquipmentReader {
     public static final String MUSCLE_USED = "MUSCLE_USED";
     public static final String USAGE_TIPS = "TIPS_FOR_USING_THE_MACHINE";
     public static final String FOR_WHO = "WHO_SHOULD_USE_IT";
+    public static List<GymEquipment> ALL_GYM_EQUIPMENTS = List.of();
+    private final Context context;
 
-    public List<GymEquipment> getGymEquipment(Context context) {
+    public EquipmentReader(Context context) {
+        this.context = context;
+        ALL_GYM_EQUIPMENTS = getGymEquipment();
+    }
+
+    private List<GymEquipment> getGymEquipment() {
         List<GymEquipment> resultList = new ArrayList<>();
         InputStream inputStream = null;
         //TODO refactor

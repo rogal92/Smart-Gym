@@ -22,4 +22,12 @@
         android:shadowColor="@color/black"
         android:text="Pobierz dane siłowni" />
 
+    <Button
+        android:id="@+id/getAllEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:shadowColor="@color/black"
+        android:text="Pokaż sprzęt" />
+
 </LinearLayout>
