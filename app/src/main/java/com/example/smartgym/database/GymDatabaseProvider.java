@@ -11,18 +11,11 @@ class GymDatabaseProvider extends SQLiteOpenHelper {
     static final String DB_NAME = "database.db";
     static final String GYM_TABLE = "GYM";
     static final String COACH_TABLE = "COACH";
-    static final String EQUIPMENT_TABLE = "EQUIPMENT";
     private static final String DB_CREATE_COACH_TABLE = """
             CREATE TABLE COACH (
             _ID INTEGER PRIMARY KEY AUTOINCREMENT,
             LOCATION TEXT NOT NULL,
             NAME TEXT NOT NULL);
-            """;
-    private static final String DB_CREATE_EQUIPMENT_TABLE = """
-            CREATE TABLE EQUIPMENT (
-            _ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            NAME TEXT NOT NULL,
-            DESCRIPTION TEST NOT NULL);
             """;
     private static final String DB_CREATE_GYM_TABLE = """
             CREATE TABLE GYM (
@@ -43,8 +36,6 @@ class GymDatabaseProvider extends SQLiteOpenHelper {
         Log.d(DEBUG_TAG, "Table " + GYM_TABLE + " ver." + DB_VERSION + " created");
         db.execSQL(DB_CREATE_COACH_TABLE);
         Log.d(DEBUG_TAG, "Table " + COACH_TABLE + " ver." + DB_VERSION + " created");
-        db.execSQL(DB_CREATE_EQUIPMENT_TABLE);
-        Log.d(DEBUG_TAG, "Table " + EQUIPMENT_TABLE + " ver." + DB_VERSION + " created");
     }
 
     @Override

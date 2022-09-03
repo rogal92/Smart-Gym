@@ -11,9 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:onClick="startJourney"
         android:shadowColor="@color/black"
         android:text="Zacznij Trening" />
+    <Button
+        android:id="@+id/checkEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:shadowColor="@color/black"
+        android:text="Sprawdź sprzęt" />
 
     <TextView
         android:id="@+id/message"

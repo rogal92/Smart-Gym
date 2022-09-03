@@ -4,20 +4,20 @@ import static com.example.smartgym.database.GymDatabaseProvider.COACH_TABLE;
 import static com.example.smartgym.database.GymDatabaseProvider.DB_NAME;
 import static com.example.smartgym.database.GymDatabaseProvider.DB_VERSION;
 import static com.example.smartgym.database.GymDatabaseProvider.DEBUG_TAG;
-import static com.example.smartgym.database.GymDatabaseProvider.EQUIPMENT_TABLE;
 import static com.example.smartgym.database.GymDatabaseProvider.GYM_TABLE;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.smartgym.R;
 import com.example.smartgym.dao.Coach;
-import com.example.smartgym.dao.GymEquipment;
 import com.example.smartgym.dao.Gym;
 import com.example.smartgym.dao.GymLocation;
 
@@ -67,21 +67,6 @@ public class GymDatabase {
     public void insertAllGymData() {
         insertGym();
         insertCoaches("Atlantic", "ul. Pakerska 69, Kraków");
-        insertEquipment();
-    }
-
-    public GymEquipment getEquipment() {
-        Log.d(DEBUG_TAG, "Getting desired equipment.txt");
-        Cursor fetchedEquipment = db.rawQuery("""
-                SELECT * 
-                FROM EQUIPMENT 
-                WHERE ID = 1;
-                """, new String[]{});
-        return new GymEquipment(
-                fetchedEquipment.getLong(1),
-                fetchedEquipment.getString(2),
-                fetchedEquipment.getString(3),
-                fetchedEquipment.getString(4));
     }
 
     public int[] getGymLogos() {
@@ -105,15 +90,9 @@ public class GymDatabase {
                 "Tam Koło Galerii",
                 69),
                 R.drawable.gym);
-        List<Gym> gymList = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            gymList.add(calypso);
-            gymList.add(atlantic);
-        }
-        gymList = gymList.stream().sorted(Comparator.comparing(Gym::getName)).collect(Collectors.toList());
+        List<Gym> gymList = List.of(calypso, atlantic,calypso, atlantic,calypso, atlantic,calypso, atlantic,calypso, atlantic,calypso, atlantic,calypso, atlantic,calypso, atlantic);
         return gymList;
     }
-
 
     private long insertGym() {
         Log.d(DEBUG_TAG, "Saving Gym to database..");
@@ -146,19 +125,5 @@ public class GymDatabase {
         List<Coach> coachList = List.of(fiedorBodyBuilder);
         coachList.forEach(coach -> coachValues.put(KEY_NAME, coach.getName()));
         return db.insert(COACH_TABLE, null, coachValues);
-    }
-
-    @SuppressLint("NewApi")
-    private long insertEquipment() {
-        Log.d(DEBUG_TAG, "Saving Equipment to device database...");
-        ContentValues equipmentValues = new ContentValues();
-        GymEquipment barbell = new GymEquipment(1, "Barbell", "Do workout, don't be a pussy",
-                "location to video or photo?");
-        List<GymEquipment> equipmentList = List.of(barbell);
-        equipmentList.forEach(equipment -> {
-            equipmentValues.put(KEY_NAME, equipment.getName());
-            equipmentValues.put(KEY_DESCRIPTION, equipment.getDescription());
-        });
-        return db.insert(EQUIPMENT_TABLE, null, equipmentValues);
     }
 }

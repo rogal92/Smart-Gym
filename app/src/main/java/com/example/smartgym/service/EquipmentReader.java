@@ -5,7 +5,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.smartgym.dao.Equipmentt;
+import com.example.smartgym.dao.GymEquipment;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,18 +15,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 
 public class EquipmentReader {
-    private static final String NAME = "NAME";
-    private static final String DESCRIPTION = "DESCRIPTION";
-    private static final String MUSCLE_USED = "MUSCLE_USED";
-    private static final String USAGE_TIPS = "TIPS_FOR_USING_THE_MACHINE";
-    private static final String FOR_WHO = "WHO_SHOULD_USE_IT";
+    public static final String NAME = "NAME";
+    public static final String DESCRIPTION = "DESCRIPTION";
+    public static final String MUSCLE_USED = "MUSCLE_USED";
+    public static final String USAGE_TIPS = "TIPS_FOR_USING_THE_MACHINE";
+    public static final String FOR_WHO = "WHO_SHOULD_USE_IT";
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public static List<Equipmentt> getAvailableGymEquipment(Context context) {
-        List<Equipmentt> resultList = new ArrayList<>();
+    public List<GymEquipment> getGymEquipment(Context context) {
+        List<GymEquipment> resultList = new ArrayList<>();
         InputStream inputStream = null;
         //TODO refactor
         try {
@@ -83,7 +83,7 @@ public class EquipmentReader {
             if (lines.get(i).startsWith("---")) {
                 contentMap.put(FOR_WHO, equipmentMap.toString());
                 equipmentMap.setLength(0);
-                resultList.add(new Equipmentt(new HashMap<>(contentMap)));
+                resultList.add(new GymEquipment(new HashMap<>(contentMap)));
                 contentMap.clear();
             }
         }

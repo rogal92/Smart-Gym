@@ -3,15 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/atlantic">
-
+    android:orientation="vertical">
     <Button
         android:id="@+id/main_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:onClick="startJourney"
         android:shadowColor="@color/black"
         android:text="Zacznij Trening" />
 

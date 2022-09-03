@@ -7,23 +7,18 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.smartgym.R;
-import com.example.smartgym.database.GymDatabase;
-import com.kontakt.sdk.android.ble.manager.ProximityManager;
 
 public class HelloGymActivity extends AppCompatActivity {
-    private GymDatabase gymDatabase;
-    private Button startTtainingButton;
-    private ProximityManager proximityManager;
-
+    private Button startTtainingButton, checkEquipment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello_gym);
-
-        gymDatabase = new GymDatabase(this);
         startTtainingButton = findViewById(R.id.startTraining);
+        checkEquipment = findViewById(R.id.checkEquipment);
         startTtainingButton.setOnClickListener(
-                view -> new Intent(this, EquipmentFinderActivity.class));
-
+                view -> new Intent(this, TrainingActivity.class));
+        checkEquipment.setOnClickListener(
+                view -> new Intent(this, EquipmentProviderActivity.class));
     }
 }

@@ -1,32 +1,24 @@
 package com.example.smartgym.dao;
 
-//TODO  remove?
+import java.util.Map;
+
 public class GymEquipment {
-    private final long id;
-    private final String name;
-    private final String description;
-    private String gifOrVideo = "??";
+    private final Map<String, String> contentMap;
+    private boolean isExpanded;
 
-    public GymEquipment(long id, String name, String description, String gifOrVideo) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.gifOrVideo = gifOrVideo;
+    public GymEquipment(Map<String, String> contentMap) {
+        this.contentMap = contentMap;
     }
 
-    public long getId() {
-        return id;
+    public Map<String, String> getContentMap() {
+        return contentMap;
     }
 
-    public String getName() {
-        return name;
+    public boolean isExpanded() {
+        return isExpanded;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getGifOrVideo() {
-        return gifOrVideo;
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
     }
 }

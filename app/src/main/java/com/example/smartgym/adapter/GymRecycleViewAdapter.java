@@ -29,7 +29,7 @@ public class GymRecycleViewAdapter extends RecyclerView.Adapter<GymRecycleViewAd
     @Override
     public GymRecycleViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recycle_view_row, parent, false);
+        View view = inflater.inflate(R.layout.recycle_view_gym_row, parent, false);
         return new GymRecycleViewAdapter.MyViewHolder(view);
     }
 
@@ -59,7 +59,7 @@ public class GymRecycleViewAdapter extends RecyclerView.Adapter<GymRecycleViewAd
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             gymLogo = itemView.findViewById(R.id.imageView);
-            gymName = itemView.findViewById(R.id.gymName);
+            gymName = itemView.findViewById(R.id.equipmentName);
             localization = itemView.findViewById(R.id.gymLocalization);
         }
     }

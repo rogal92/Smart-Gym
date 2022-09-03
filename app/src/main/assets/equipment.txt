@@ -213,7 +213,18 @@ The lateral raise machine promotes hypertrophy, improves blood flow, and helps y
 Most of the time, this is a safe machine for anyone to use. If you have an injury or experience pain from doing a few reps, consult the advice of a physician.
 ---
 1.NAME
-BACK EXTENSION MACHINE (HYPEREXTENSION BENCH / ROMAN CHAIR)
+CABLE ROW MACHINE
+2.DESCRIPTION
+This machine allows you to move a pull up/chin up bar attached to a stack of weights, towards you while sitting down. It’s a compound exercise that specifically allows you to work on your lat muscles.
+3.MUSCLES USED
+latissimus dorsi (lats), biceps, deltoids (back), and trapezius (traps).
+4.TIPS FOR USING THE MACHINE
+When using the lat pull down machine, never pull the bar towards your stomach. If you do this it’s a clear sign you’re not using enough weight and not targeting the right muscles. Plus keep an even grip on both sides and make sure it’s not too wide.
+5.WHO SHOULD USE IT?
+If you do yoga, pilates, you’re a swimmer or cyclist this machine will help strengthen your back muscles.
+---
+1.NAME
+LAT PULL DOWN MACHINE
 2.DESCRIPTION
 This equipment allows you to lie facing downwards at an angle on a padded bench and ankle supports to do exercises focusing on your lower back.
 3.MUSCLES USED
@@ -223,4 +234,48 @@ Make sure when using this bench it does not feel uncomfortable using it. You sho
 5.WHO SHOULD USE IT?
 Gym equipment like this is great for intermediate to advanced gym goers. It strengthens your back, and it can help support you in other movements such as squats and deadlifts.
 So, if you’re someone who does a lot of bending down every day, this will help you. This equipment is also a great rehabilitation exercise to help strengthen your lower back, but it must be done slowly and under control.
+---
+1.NAME
+GHD MACHINE (GLUTE HAM DEVELOPER)
+2.DESCRIPTION
+Do you like doing hamstring curls? If so, this machine will allow you to do them slowly and controlled, using your body weight. It is one of the more challenging types of machines, but the sweat and hard work are worth it, as you will get to see results easily with this machine.
+3.MUSCLES USED
+Core, hamstrings, and glutes.
+4.TIPS FOR USING THE MACHINE
+!!!!!!!!!ADD!!!!!!!!!!!!!!!
+5.WHO SHOULD USE IT?
+If you play a sport that involves your lower body like soccer, sprinting, lacrosse, field hockey, and anything similar, this machine will help increase your power.
+---
+1.NAME
+FRONT PULL DOWN MACHINE
+2.DESCRIPTION
+This machine causes you to sit on a seat with a pad in front of you and pull down two handles attached to weights that work your latissimus dorsi.
+3.MUSCLES USED
+Back and slightly the biceps.
+4.TIPS FOR USING THE MACHINE
+!!!!!!!!!ADD!!!!!!!!!!!!!!!
+5.WHO SHOULD USE IT?
+Anyone who uses their back a lot in work or fitness.
+---
+1.NAME
+ABDOMINAL BENCH
+2.DESCRIPTION
+This is equipment allows you to undergo abdominal exercises in a safe position. It has a lot of similarities to a hyperextension machine, except this is specifically for your abs.
+3.MUSCLES USED
+Abs, internal obliques, quadriceps, and transverse abdominal muscles.
+4.TIPS FOR USING THE MACHINE
+Make sure when using the abdominal bench you practice having the proper form so you don’t injure yourself.
+5.WHO SHOULD USE IT?
+If you participate in a sport that uses a lot of core muscles, then this is a highly effective workout.
+---
+1.NAME
+AB CRUNCH MACHINE
+2.DESCRIPTION
+If you want to add some variety to your normal crunches, then you should try using an ab crunch machine. The ab crunch machine allows you to isolate and specifically focus on your abs. The brilliant thing about this machine is that you get to work out your abs from a comfortable seated position.
+3.MUSCLES USED
+Abdominals
+4.TIPS FOR USING THE MACHINE
+Remember to slowly inhale and exhale when doing this exercise. Plus make sure you bend your arms when using the ab crunch machine, and your back is against the padded seat.
+5.WHO SHOULD USE IT?
+Anyone who wants to have more defined abs
 ---
