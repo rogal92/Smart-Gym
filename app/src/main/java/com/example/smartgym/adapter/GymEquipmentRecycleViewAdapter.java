@@ -14,12 +14,15 @@ import com.example.smartgym.R;
 import com.example.smartgym.constants.EquipmentField;
 import com.example.smartgym.dao.GymEquipment;
 import com.example.smartgym.service.EquipmentReader;
+import com.kontakt.sdk.android.common.model.SecureCommandType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEquipmentRecycleViewAdapter.MyViewHolder> {
@@ -36,6 +39,8 @@ public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEqui
     public GymEquipmentRecycleViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycle_view_equipment_row, parent, false);
+        Set<GymEquipment> test = getFilteredEquipment("olympic");
+        test.size();
         return new GymEquipmentRecycleViewAdapter.MyViewHolder(view);
     }
 
@@ -68,32 +73,32 @@ public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEqui
         }
     }
 
-    private List<GymEquipment> getFilteredEquipment(String filterKey) {
-        List<GymEquipment> resultList = new ArrayList<>();
+    private Set<GymEquipment> getFilteredEquipment(String filterKey) {
+        Set<GymEquipment> resultList = new HashSet<>();
         Arrays.stream(EquipmentField.values())
                 .forEach(field -> resultList.addAll(filterEquipment(field, filterKey)));
         return resultList;
     }
 
-    private List<GymEquipment> filterEquipment(EquipmentField field, String filterKey) {
-        List<GymEquipment> resultList;
+    private Set<GymEquipment> filterEquipment(EquipmentField field, String filterKey) {
+        Set<GymEquipment> resultList;
         switch (field) {
             case NAME -> resultList = gymEquipmentList.stream()
                     .filter(gymEquipment -> gymEquipment.getName().contains(filterKey))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
             case DESCRIPTION -> resultList = gymEquipmentList.stream()
                     .filter(gymEquipment -> gymEquipment.getDescription().contains(filterKey))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
             case MUSCLE_USED -> resultList = gymEquipmentList.stream()
                     .filter(gymEquipment -> gymEquipment.getMuscleUsed().contains(filterKey))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
             case USAGE_TIPS -> resultList = gymEquipmentList.stream()
                     .filter(gymEquipment -> gymEquipment.getUsageTips().contains(filterKey))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
             case FOR_WHO -> resultList = gymEquipmentList.stream()
                     .filter(gymEquipment -> gymEquipment.getForWho().contains(filterKey))
-                    .collect(Collectors.toList());
-            default -> resultList = gymEquipmentList;
+                    .collect(Collectors.toSet());
+            default -> resultList = new HashSet<>(gymEquipmentList);
         }
         return resultList;
     }
