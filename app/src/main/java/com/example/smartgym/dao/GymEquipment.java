@@ -1,24 +1,75 @@
 package com.example.smartgym.dao;
 
-import java.util.Map;
+import static com.example.smartgym.constants.EquipmentField.*;
+import static com.example.smartgym.service.EquipmentReader.*;
+
+import com.example.smartgym.constants.EquipmentField;
 
 public class GymEquipment {
-    private final Map<String, String> contentMap;
-    private boolean isExpanded;
+    private final String name;
+    private final String description;
+    private final String muscleUsed;
+    private final String usageTips;
+    private final String forWho;
+    private boolean isVisible;
 
-    public GymEquipment(Map<String, String> contentMap) {
-        this.contentMap = contentMap;
+    public GymEquipment(String name, String description, String muscleUsed, String usageTips,
+                        String forWho) {
+        this.name = name;
+        this.description = description;
+        this.muscleUsed = muscleUsed;
+        this.usageTips = usageTips;
+        this.forWho = forWho;
     }
 
-    public Map<String, String> getContentMap() {
-        return contentMap;
+
+    public boolean isVisible() {
+        return isVisible;
     }
 
-    public boolean isExpanded() {
-        return isExpanded;
+    public String getName() {
+        return name;
     }
 
-    public void setExpanded(boolean expanded) {
-        isExpanded = expanded;
+    public String getDescription() {
+        return description;
+    }
+
+    public String getMuscleUsed() {
+        return muscleUsed;
+    }
+
+    public String getUsageTips() {
+        return usageTips;
+    }
+
+    public String getForWho() {
+        return forWho;
+    }
+
+    public void setVisible(boolean visible) {
+        this.isVisible = visible;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                """
+                %s
+                %s
+                
+                %s
+                %s
+                
+                %s
+                %s
+                
+                %s
+                %s
+                """,
+                DESCRIPTION.name, description,
+                MUSCLE_USED.name, muscleUsed,
+                USAGE_TIPS.name, usageTips,
+                FOR_WHO.name, forWho);
     }
 }

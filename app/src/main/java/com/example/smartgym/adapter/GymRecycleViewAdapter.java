@@ -59,7 +59,7 @@ public class GymRecycleViewAdapter extends RecyclerView.Adapter<GymRecycleViewAd
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             gymLogo = itemView.findViewById(R.id.imageView);
-            gymName = itemView.findViewById(R.id.equipmentName);
+            gymName = itemView.findViewById(R.id.gymName);
             localization = itemView.findViewById(R.id.gymLocalization);
         }
     }

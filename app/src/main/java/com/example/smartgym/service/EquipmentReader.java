@@ -1,7 +1,10 @@
 package com.example.smartgym.service;
 
+import static com.example.smartgym.constants.EquipmentField.*;
+
 import android.content.Context;
 
+import com.example.smartgym.constants.EquipmentField;
 import com.example.smartgym.dao.GymEquipment;
 
 import java.io.BufferedReader;
@@ -9,17 +12,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+//TODO make a singleton
 public class EquipmentReader {
-    public static final String NAME = "NAME";
-    public static final String DESCRIPTION = "DESCRIPTION";
-    public static final String MUSCLE_USED = "MUSCLE_USED";
-    public static final String USAGE_TIPS = "TIPS_FOR_USING_THE_MACHINE";
-    public static final String FOR_WHO = "WHO_SHOULD_USE_IT";
     public static List<GymEquipment> ALL_GYM_EQUIPMENTS = List.of();
     private final Context context;
 
@@ -48,7 +48,7 @@ public class EquipmentReader {
                 equipmentMap.append(lines.get(i++));
 
             if (lines.get(i).startsWith("2")) {
-                contentMap.put(NAME, equipmentMap.toString());
+                contentMap.put(NAME.name, equipmentMap.toString());
                 equipmentMap.setLength(0);
                 ++i;
             }
@@ -57,7 +57,7 @@ public class EquipmentReader {
                 equipmentMap.append(lines.get(i++));
 
             if (lines.get(i).startsWith("3")) {
-                contentMap.put(DESCRIPTION, equipmentMap.toString());
+                contentMap.put(DESCRIPTION.name, equipmentMap.toString());
                 equipmentMap.setLength(0);
                 ++i;
             }
@@ -66,7 +66,7 @@ public class EquipmentReader {
                 equipmentMap.append(lines.get(i++));
 
             if (lines.get(i).startsWith("4")) {
-                contentMap.put(MUSCLE_USED, equipmentMap.toString());
+                contentMap.put(MUSCLE_USED.name, equipmentMap.toString());
                 equipmentMap.setLength(0);
                 ++i;
             }
@@ -75,7 +75,7 @@ public class EquipmentReader {
                 equipmentMap.append(lines.get(i++));
 
             if (lines.get(i).startsWith("5")) {
-                contentMap.put(USAGE_TIPS, equipmentMap.toString());
+                contentMap.put(USAGE_TIPS.name, equipmentMap.toString());
                 equipmentMap.setLength(0);
                 ++i;
             }
@@ -84,12 +84,19 @@ public class EquipmentReader {
                 equipmentMap.append(lines.get(i++));
 
             if (lines.get(i).startsWith("---")) {
-                contentMap.put(FOR_WHO, equipmentMap.toString());
+                contentMap.put(FOR_WHO.name, equipmentMap.toString());
                 equipmentMap.setLength(0);
-                resultList.add(new GymEquipment(new HashMap<>(contentMap)));
+                resultList.add(new GymEquipment(
+                        contentMap.get(NAME.name),
+                        contentMap.get(DESCRIPTION.name),
+                        contentMap.get(MUSCLE_USED.name),
+                        contentMap.get(USAGE_TIPS.name),
+                        contentMap.get(FOR_WHO.name)));
                 contentMap.clear();
             }
         }
-        return resultList;
+        return resultList.stream()
+                .sorted(Comparator.comparing(GymEquipment::getName))
+                .collect(Collectors.toList());
     }
 }
