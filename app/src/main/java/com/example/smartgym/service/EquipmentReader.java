@@ -17,17 +17,25 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-//TODO make a singleton
-public class EquipmentReader {
-    public static Set<GymEquipment> ALL_GYM_EQUIPMENTS = Set.of();
-    private final Context context;
+public final class EquipmentReader {
+    private final Set<GymEquipment> gymEquipments;
+    private static EquipmentReader EQUIPMENT_READER_INSTANCE;
 
-    public EquipmentReader(Context context) {
-        this.context = context;
-        ALL_GYM_EQUIPMENTS = getGymEquipment();
+    private EquipmentReader(Context context) {
+        gymEquipments = readGymEquipments(context);
     }
 
-    private Set<GymEquipment> getGymEquipment() {
+    public static EquipmentReader getEquipmentReader(Context context) {
+        if (EQUIPMENT_READER_INSTANCE == null)
+            return new EquipmentReader(context);
+        return EQUIPMENT_READER_INSTANCE;
+    }
+
+    public Set<GymEquipment> getGymEquipments() {
+        return gymEquipments;
+    }
+
+    private Set<GymEquipment> readGymEquipments(Context context) {
         Set<GymEquipment> resultList = new HashSet<>();
         InputStream inputStream = null;
         //TODO refactor

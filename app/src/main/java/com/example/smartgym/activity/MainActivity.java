@@ -2,32 +2,28 @@ package com.example.smartgym.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.ActionMenuItemView;
 
 import com.example.smartgym.R;
 import com.example.smartgym.databinding.ActivityMainBinding;
-import com.example.smartgym.service.EquipmentReader;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
-    private Button findGymButton, downloadGymButton, getEquipmentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.example.smartgym.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        EquipmentReader equipmentReader = new EquipmentReader(this);
-        findGymButton = findViewById(R.id.findGymButton);
-        downloadGymButton = findViewById(R.id.downloadGymButton);
-        getEquipmentButton = findViewById(R.id.getAllEquipment);
-        findGymButton.setOnClickListener(
+        ActionMenuItemView findGymItemView = findViewById(R.id.findGymButton);
+        ActionMenuItemView downloadGymItemView = findViewById(R.id.downloadGymButton);
+        ActionMenuItemView getEquipmentItemView = findViewById(R.id.getAllEquipment);
+        findGymItemView.setOnClickListener(
                 view -> startActivity(new Intent(this, HelloGymActivity.class)));
-        downloadGymButton.setOnClickListener(
+        downloadGymItemView.setOnClickListener(
                 view -> startActivity(new Intent(this, DownloadGymActivity.class)));
-        getEquipmentButton.setOnClickListener(
+        getEquipmentItemView.setOnClickListener(
                 view -> startActivity(new Intent(this, EquipmentProviderActivity.class)));
     }
 }

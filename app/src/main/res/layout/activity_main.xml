@@ -1,33 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroundtemp"
-    android:orientation="vertical">
+    tools:context=".activity.MainActivity">
 
-    <Button
-        android:id="@+id/findGymButton"
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:shadowColor="@color/black"
-        android:text="Wejdź na siłownie" />
+        android:layout_gravity="bottom"
+        android:backgroundTint="#0B0A0A"
+        app:fabCradleMargin="0dp"
+        app:fabCradleRoundedCornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
-    <Button
-        android:id="@+id/downloadGymButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:shadowColor="@color/black"
-        android:text="Pobierz dane siłowni" />
+        app:menu="@menu/main_activity_app_bar_bottom_item" />
 
-    <Button
-        android:id="@+id/getAllEquipment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:shadowColor="@color/black"
-        android:text="Pokaż sprzęt" />
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

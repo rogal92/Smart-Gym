@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/downloadGymButton"
+        android:title="Pobierz"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/findGymButton"
+        android:title="Start"
+        android:icon="@drawable/gym2"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/getAllEquipment"
+        android:icon="@drawable/equipmentbook"
+        android:title="EquipmentBook"
+        app:showAsAction="always" />
+
+</menu>
