@@ -3,23 +3,21 @@ package com.example.smartgym.service;
 import com.example.smartgym.constants.EquipmentField;
 import com.example.smartgym.dao.GymEquipment;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class EquipmentFilter {
 
-    private final List<GymEquipment> gymEquipmentList;
+    private final Set<GymEquipment> gymEquipmentList;
 
-    public EquipmentFilter(List<GymEquipment> gymEquipmentList) {
+    public EquipmentFilter(Set<GymEquipment> gymEquipmentList) {
         this.gymEquipmentList = gymEquipmentList;
     }
 
-    public List<GymEquipment> getFilteredEquipment(String filterKey) {
-        List<GymEquipment> resultList = new ArrayList<>();
+    public Set<GymEquipment> getFilteredEquipment(String filterKey) {
+        Set<GymEquipment> resultList = new HashSet<>();
         Arrays.stream(EquipmentField.values())
                 .forEach(field -> resultList.addAll(filterEquipment(field, filterKey)));
         return resultList;

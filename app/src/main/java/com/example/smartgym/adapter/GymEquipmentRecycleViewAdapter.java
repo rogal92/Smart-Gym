@@ -26,10 +26,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEquipmentRecycleViewAdapter.MyViewHolder> {
-    private List<GymEquipment> gymEquipmentList;
+    private Set<GymEquipment> gymEquipmentList;
     private final Context context;
 
-    public GymEquipmentRecycleViewAdapter(Context context, List<GymEquipment> gymEquipmentList) {
+    public GymEquipmentRecycleViewAdapter(Context context, Set<GymEquipment> gymEquipmentList) {
         this.context = context;
         this.gymEquipmentList = gymEquipmentList;
     }
@@ -44,7 +44,9 @@ public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEqui
 
     @Override
     public void onBindViewHolder(@NonNull GymEquipmentRecycleViewAdapter.MyViewHolder holder, int position) {
-        GymEquipment currentEquipment = gymEquipmentList.get(position);
+        List<GymEquipment> gymEquipments = gymEquipmentList.stream()
+                .sorted(Comparator.comparing(GymEquipment::getName)).collect(Collectors.toList());
+        GymEquipment currentEquipment = gymEquipments.get(position);
         holder.equipmentName.setText(currentEquipment.getName());
         holder.equipmentData.setText(currentEquipment.toString());
         holder.equipmentName.setOnClickListener(view -> {
@@ -59,7 +61,7 @@ public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEqui
         return gymEquipmentList.size();
     }
 
-    public void filterEquipment(List<GymEquipment> filterList) {
+    public void filterEquipment(Set<GymEquipment> filterList) {
         this.gymEquipmentList = filterList;
         notifyDataSetChanged();
     }

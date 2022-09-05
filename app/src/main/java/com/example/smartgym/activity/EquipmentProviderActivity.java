@@ -15,17 +15,18 @@ import com.example.smartgym.adapter.GymEquipmentRecycleViewAdapter;
 import com.example.smartgym.dao.GymEquipment;
 import com.example.smartgym.service.EquipmentFilter;
 import com.example.smartgym.service.EquipmentReader;
+import com.kontakt.sdk.android.common.model.SecureCommandType;
 
 import java.util.List;
+import java.util.Set;
 
 public class EquipmentProviderActivity extends AppCompatActivity {
 
-    private final List<GymEquipment> gymEquipmentList;
     private final EquipmentFilter equipmentFilter;
     private final GymEquipmentRecycleViewAdapter adapter;
 
     public EquipmentProviderActivity() {
-        this.gymEquipmentList = EquipmentReader.ALL_GYM_EQUIPMENTS;
+        Set<GymEquipment> gymEquipmentList = EquipmentReader.ALL_GYM_EQUIPMENTS;
         this.adapter = new GymEquipmentRecycleViewAdapter(this, gymEquipmentList);
         this.equipmentFilter = new EquipmentFilter(gymEquipmentList);
     }
@@ -35,7 +36,6 @@ public class EquipmentProviderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equipment_provider);
         RecyclerView gymEquipmentProviderView = findViewById(R.id.equipmentRecycleView);
-        var adapter = new GymEquipmentRecycleViewAdapter(this, gymEquipmentList);
         gymEquipmentProviderView.setAdapter(adapter);
         gymEquipmentProviderView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -53,8 +53,8 @@ public class EquipmentProviderActivity extends AppCompatActivity {
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                adapter.filterEquipment(equipmentFilter.getFilteredEquipment(s));
+            public boolean onQueryTextChange(String filterKey) {
+                adapter.filterEquipment(equipmentFilter.getFilteredEquipment(filterKey));
                 return false;
             }
         });

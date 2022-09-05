@@ -4,16 +4,14 @@ import static com.example.smartgym.constants.EquipmentField.*;
 
 import android.content.Context;
 
-import com.example.smartgym.constants.EquipmentField;
 import com.example.smartgym.dao.GymEquipment;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,7 +19,7 @@ import java.util.stream.Collectors;
 
 //TODO make a singleton
 public class EquipmentReader {
-    public static List<GymEquipment> ALL_GYM_EQUIPMENTS = List.of();
+    public static Set<GymEquipment> ALL_GYM_EQUIPMENTS = Set.of();
     private final Context context;
 
     public EquipmentReader(Context context) {
@@ -29,8 +27,8 @@ public class EquipmentReader {
         ALL_GYM_EQUIPMENTS = getGymEquipment();
     }
 
-    private List<GymEquipment> getGymEquipment() {
-        List<GymEquipment> resultList = new ArrayList<>();
+    private Set<GymEquipment> getGymEquipment() {
+        Set<GymEquipment> resultList = new HashSet<>();
         InputStream inputStream = null;
         //TODO refactor
         try {
@@ -96,8 +94,6 @@ public class EquipmentReader {
                 contentMap.clear();
             }
         }
-        return resultList.stream()
-                .sorted(Comparator.comparing(GymEquipment::getName))
-                .collect(Collectors.toList());
+        return resultList;
     }
 }
