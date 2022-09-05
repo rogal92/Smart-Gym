@@ -26,7 +26,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEquipmentRecycleViewAdapter.MyViewHolder> {
-    private final List<GymEquipment> gymEquipmentList;
+    private List<GymEquipment> gymEquipmentList;
     private final Context context;
 
     public GymEquipmentRecycleViewAdapter(Context context, List<GymEquipment> gymEquipmentList) {
@@ -39,8 +39,6 @@ public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEqui
     public GymEquipmentRecycleViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycle_view_equipment_row, parent, false);
-        Set<GymEquipment> test = getFilteredEquipment("olympic");
-        test.size();
         return new GymEquipmentRecycleViewAdapter.MyViewHolder(view);
     }
 
@@ -61,6 +59,11 @@ public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEqui
         return gymEquipmentList.size();
     }
 
+    public void filterEquipment(List<GymEquipment> filterList) {
+        this.gymEquipmentList = filterList;
+        notifyDataSetChanged();
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView equipmentName, equipmentData;
         LinearLayout layout;
@@ -71,35 +74,5 @@ public class GymEquipmentRecycleViewAdapter extends RecyclerView.Adapter<GymEqui
             equipmentData = itemView.findViewById(R.id.equipmentData);
             layout = itemView.findViewById(R.id.layoutExpand);
         }
-    }
-
-    private Set<GymEquipment> getFilteredEquipment(String filterKey) {
-        Set<GymEquipment> resultList = new HashSet<>();
-        Arrays.stream(EquipmentField.values())
-                .forEach(field -> resultList.addAll(filterEquipment(field, filterKey)));
-        return resultList;
-    }
-
-    private Set<GymEquipment> filterEquipment(EquipmentField field, String filterKey) {
-        Set<GymEquipment> resultList;
-        switch (field) {
-            case NAME -> resultList = gymEquipmentList.stream()
-                    .filter(gymEquipment -> gymEquipment.getName().contains(filterKey))
-                    .collect(Collectors.toSet());
-            case DESCRIPTION -> resultList = gymEquipmentList.stream()
-                    .filter(gymEquipment -> gymEquipment.getDescription().contains(filterKey))
-                    .collect(Collectors.toSet());
-            case MUSCLE_USED -> resultList = gymEquipmentList.stream()
-                    .filter(gymEquipment -> gymEquipment.getMuscleUsed().contains(filterKey))
-                    .collect(Collectors.toSet());
-            case USAGE_TIPS -> resultList = gymEquipmentList.stream()
-                    .filter(gymEquipment -> gymEquipment.getUsageTips().contains(filterKey))
-                    .collect(Collectors.toSet());
-            case FOR_WHO -> resultList = gymEquipmentList.stream()
-                    .filter(gymEquipment -> gymEquipment.getForWho().contains(filterKey))
-                    .collect(Collectors.toSet());
-            default -> resultList = new HashSet<>(gymEquipmentList);
-        }
-        return resultList;
     }
 }
