@@ -3,10 +3,11 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/black">
 
         <LinearLayout
-            android:background="#fff"
+            android:background="@color/black"
             android:id="@+id/parent"
             android:focusable="true"
             android:clickable="true"
@@ -39,28 +40,32 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#f2f2f2"/>
+            android:background="@color/black"/>
 
         <LinearLayout
             android:id="@+id/layoutExpand"
             android:visibility="gone"
-            android:background="#f7f7f7"
+            android:background="@color/black"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <TextView
                 android:id="@+id/equipmentData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
+                android:background="@color/black"
+                android:textColor="@color/white"
                 android:text="TEXT"/>
 
+            <ImageView
+                android:id="@+id/equipmentImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abroller">
+            </ImageView>
+
         </LinearLayout>
-
-
-
-
     </LinearLayout>
 </layout>
