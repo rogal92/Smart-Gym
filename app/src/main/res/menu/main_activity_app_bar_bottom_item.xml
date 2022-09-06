@@ -3,20 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:title="E"
+        app:showAsAction="always" />
+
+    <item
+        android:title="E"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/downloadGymButton"
+        android:checkable="true"
+        android:icon="@drawable/downloadgym"
         android:title="Pobierz"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/findGymButton"
-        android:title="Start"
+        android:checkable="true"
         android:icon="@drawable/gym2"
-        app:showAsAction="ifRoom" />
+        android:title="Start"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/getAllEquipment"
+        android:checkable="true"
         android:icon="@drawable/equipmentbook"
         android:title="EquipmentBook"
+        app:showAsAction="always" />
+
+    <item
+        android:title="E"
+        app:showAsAction="always" />
+    <item
+        android:title="E"
+        app:showAsAction="always" />
+
+    <item
+        android:title="E"
         app:showAsAction="always" />
 
 </menu>
